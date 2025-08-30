@@ -48,7 +48,7 @@ Current state of features:
 export ALLOW_MISSING_DEPENDENCIES=true
 source build/envsetup.sh
 lunch twrp_rtwo-eng
-mka bootimage -j$(nproc --all)
+mka recoveryimage -j$(nproc --all)
 ```
 
 **Copyright (C) 2023 Team Win Recovery Project**<br>
