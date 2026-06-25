@@ -28,6 +28,7 @@
 import /init.recovery.qcom_decrypt.rc
 
 on init
+    setprop twrp.defer.decrypt true
     # to cut charging battery path
     write /sys/class/power_supply/battery/siop_level 0
     setprop prepdecrypt.setpatch true
