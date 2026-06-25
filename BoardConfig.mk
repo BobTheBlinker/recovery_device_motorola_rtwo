@@ -130,7 +130,7 @@ PLATFORM_VERSION := 12.1.0
 TW_INCLUDE_CRYPTO := true
 TW_INCLUDE_CRYPTO_FBE := true
 BOARD_USES_QCOM_FBE_DECRYPTION := false
-TW_INCLUDE_FBE_METADATA_DECRYPT := true
+TW_INCLUDE_FBE_METADATA_DECRYPT := false
 BOARD_USES_METADATA_PARTITION := true
 
 # PRODUCT_COPY_FILES directives.
@@ -180,3 +180,9 @@ TW_CUSTOM_CPU_POS := 580
 TW_CUSTOM_CLOCK_POS := 50
 TW_CUSTOM_BATTERY_POS := 800
 # End*
+
+# A-Team Private Signing - Added by signKEYS
+# We use ?= to bypass readonly restrictions in some trees
+PRODUCT_DEFAULT_DEV_CERTIFICATE ?= vendor/ateam/releasekey
+PRODUCT_OTA_PUBLIC_KEYS ?= vendor/ateam/releasekey.x509.pem
+PRODUCT_EXTRA_RECOVERY_KEYS ?= vendor/ateam/releasekey
