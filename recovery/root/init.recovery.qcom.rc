@@ -26,17 +26,37 @@
 #
 
 import /init.recovery.qcom_decrypt.rc
+import /vendor/etc/init/init.spdaemon.rc
+import /vendor/etc/init/init.vendor.qti.spu@1.1-service.rc
+import /vendor/etc/init/init.spuservice.rc
+import /init.recovery.rtwo.gatekeeper.rc
+
+service rtwo-crypto-identity /system/bin/rtwo-crypto-identity.sh
+    user root
+    group root
+    disabled
+    oneshot
+    seclabel u:r:recovery:s0
+
+on early-init
+    exec_start rtwo-crypto-identity
 
 on init
-    setprop twrp.defer.decrypt true
+    setprop twrp.defer.decrypt false
     # to cut charging battery path
     write /sys/class/power_supply/battery/siop_level 0
-    setprop prepdecrypt.setpatch true
+    setprop prepdecrypt.setpatch false
     setprop sys.usb.configfs 1
 
 on fs
     wait /dev/block/platform/soc/${ro.boot.bootdevice}
     symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
+
+    mkdir /persist 0771 root system
+    mkdir /mnt/vendor 0755 root root
+    mkdir /mnt/vendor/persist 0771 root system
+    mount ext4 /dev/block/bootdevice/by-name/persist /persist
+    mount none /persist /mnt/vendor/persist bind
 
     # Mount firmware
     mkdir /vendor/firmware_mnt
@@ -47,14 +67,6 @@ on fs
 
 on boot
     start health-hal-2-1
-
-on property:crypto.ready=1
-    start keymint-default
-    start keymaster-sb-4-0
-
-on property:crypto.ready=0
-    stop keymaster-sb-4-0
-    stop keymint-default
 
 on property:twrp.user.0.decrypt=0
     umount /vendor/firmware_mnt

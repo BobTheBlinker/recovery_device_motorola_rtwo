@@ -1,0 +1,20 @@
+service gatekeeper-rtwo /system/bin/android.hardware.gatekeeper@1.0-service-qti
+    class early_hal
+    user system
+    group system
+    setenv LD_LIBRARY_PATH /vendor/lib64:/vendor/lib:/system/lib64:/system/lib:/sbin
+    disabled
+    seclabel u:r:recovery:s0
+
+on property:vendor.sys.listeners.registered=true
+    stop gatekeeper-1-0
+    stop gatekeeper-1-0-qti
+    stop qseecomd
+    setprop vendor.gatekeeper.is_security_level_spu 0
+    start vendor.spdaemon
+    start vendor.sec_nvm
+    start spu_service
+    start spuservice
+
+on property:init.svc.vendor.spdaemon=running && property:init.svc.vendor.sec_nvm=running && property:init.svc.spu_service=running && property:init.svc.spuservice=running && property:vendor.sys.listeners.registered=true
+    start gatekeeper-rtwo

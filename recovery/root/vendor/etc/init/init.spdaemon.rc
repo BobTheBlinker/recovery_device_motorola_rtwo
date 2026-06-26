@@ -1,0 +1,20 @@
+on post-fs && property:ro.boot.product.vendor.sku=kalama
+    start vendor.spdaemon
+    start vendor.sec_nvm
+
+service vendor.spdaemon /system/bin/spdaemon
+    class core
+    user system
+    group system
+    setenv LD_LIBRARY_PATH /vendor/lib64:/system/lib64:/sbin
+    disabled
+    shutdown critical
+    seclabel u:r:recovery:s0
+
+service vendor.sec_nvm /system/bin/sec_nvm
+    class core
+    user system
+    group system
+    setenv LD_LIBRARY_PATH /vendor/lib64:/system/lib64:/sbin
+    disabled
+    seclabel u:r:recovery:s0

@@ -1,0 +1,9 @@
+on boot && property:ro.boot.product.vendor.sku=kalama
+    start spu_service
+
+service spu_service /system/bin/vendor.qti.spu@1.1-service
+    class hal
+    user system
+    group system
+    setenv LD_LIBRARY_PATH /vendor/lib64:/system/lib64:/sbin
+    seclabel u:r:recovery:s0
