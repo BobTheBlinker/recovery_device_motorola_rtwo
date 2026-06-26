@@ -52,6 +52,14 @@ on fs
     wait /dev/block/platform/soc/${ro.boot.bootdevice}
     symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
 
+    mkdir /dev/block/mapper 0755 root root
+    symlink /dev/block/mapper/system${ro.boot.slot_suffix} /dev/block/mapper/system
+    symlink /dev/block/mapper/vendor${ro.boot.slot_suffix} /dev/block/mapper/vendor
+    symlink /dev/block/mapper/product${ro.boot.slot_suffix} /dev/block/mapper/product
+    symlink /dev/block/mapper/system_ext${ro.boot.slot_suffix} /dev/block/mapper/system_ext
+    symlink /dev/block/mapper/system_dlkm${ro.boot.slot_suffix} /dev/block/mapper/system_dlkm
+    symlink /dev/block/mapper/vendor_dlkm${ro.boot.slot_suffix} /dev/block/mapper/vendor_dlkm
+
     mkdir /persist 0771 root system
     mkdir /mnt/vendor 0755 root root
     mkdir /mnt/vendor/persist 0771 root system
