@@ -1,60 +1,55 @@
-# Motorola Edge 40 Pro/Motorola Edge+ 2023/Moto X40 (Codename: "rtwo") TWRP Port (Unofficial)
+Device configuration for Moto Edge+ (2023) (codenamed "rtwo")
+=========================================
 
-This is an unofficial TWRP device tree for the Motorola Edge 40 Pro/Motorola Edge+ 2023/Moto X40.
+The Motorola Moto Edge+ (2023) (codenamed _"rtwo"_) is an upper-range smartphone from Motorola Mobility announced in May 2023.
 
-# Warning
+## Device specifications
 
+Basic   | Spec Sheet
+-------:|:-------------------------
+SoC     | Qualcomm SM8550-AB Snapdragon 8 Gen 2 (4 nm)
+CPU     | Octa-core (1x3.2 GHz Cortex-X3 & 2x2.8 GHz Cortex-A715 & 2x2.8 GHz Cortex-A710 & 3x2.0 GHz Cortex-A510)
+GPU     | Adreno 740
+Memory  | 8 GB RAM (LPDDR4X)
+Shipped Android Version | 13.0, My UX 3.0 (Global)
+Storage | 512 GB (UFS 4.0)
+Battery | Non-removable Li-Po 5100 mAh battery
+Display | LTPS, 120 Hz, 2400 x 1080 pixels, 6.67 inches (~403 ppi density)
+Camera  | 50MP (Wide) + 12MP (Telephoto) + 50MP (Ultra-wide) + 60MP (Selfie)
+
+## Device picture
+![Motorola Moto Edge+ (2023)](https://fdn2.gsmarena.com/vv/bigpic/motorola-edge-plus-2023.jpg)
+
+# Status
+Current state of features:
+- [X] Correct screen/recovery size
+- [X] Working touch, display
+- [x] Screen goes off and on
+- [X] Backup/restore to/from internal/external storage and adb
+- [X] Poweroff
+- [X] Reboot to system, bootloader, recovery, fastboot, edl
+- [X] ADB (including sideload)
+- [X] Support EROFS/F2FS/EXT4/exFAT/FAT32/NTFS
+- [X] Decrypt /data
+- [X] Flashing zip/images
+- [X] MTP export
+- [X] All important partitions listed in wipe/mount/backup lists
+- [X] Input devices via USB-OTG
+- [X] USB mass storage export
+- [X] Correct date
+- [X] Battery level
+- [X] Set brightness
+- [X] Vibrate and set vibration
+- [X] Screenshot
+- [X] Advanced features
+
+# Building
+```bash
+export ALLOW_MISSING_DEPENDENCIES=true
+source build/envsetup.sh
+lunch twrp_rtwo-eng
+mka recoveryimage -j$(nproc --all)
 ```
-/*
-* Your warranty is now void.
-*
-* I am not responsible for bricked devices, total data loss,
-* thermonuclear war, or you getting fired because your phone got stuck in a bootloop. Please
-* do some research if you have any concerns about this unofficial TWRP port
-* before flashing it! YOU are choosing to make these modifications, and if
-* you point the finger at me for messing up your device, I will laugh at you.
-* I am also sacrificing my device just to make this TWRP port,
-* so you will be putting your device at risk by using certain features of this TWRP port.
-*/
-```
 
-# Note
-
-This family of phones uses boot.img's kernel to boot the recovery (kind of like recovery-on-boot, except recovery is on a second ramdisk). As a result, an empty kernel image is provided as a workaround (the TWRP build system needs a kernel image). A special command is included in `bootimg.mk`. Without it, the device will throw you
-
-`No valid operating system found` 
-
-when attempting to boot into recovery mode (Android itself will still boot fine, only recovery is affected until you flash a proper image).
-
-Attempting to boot using `fastboot boot` will not work; it must be flashed to recovery. Since it has no kernel, `fastboot boot recovery.img` will result in the same `No valid operating system found` error.
-
-# Working Features
-- It can boot
-- Touchscreen
-- File Manager (can browse files and mounted partitions such as `/system`)
-- Can read (and possibly write) internal storage (you have to mount from terminal currently). Exception is `/data`, which is encrypted.
-- CPU Temperature
-- Brightness (there is a default brightness that works in most environments set, but it of course can be adjusted through the slider)
-- USB with adb (MTP appears in lsusb, so this should work as well)
-- Super partition mapping (dm devices appear in /dev/block, and all match up with Android's numbering).
-
-# Non-working features
-- USB host mode (eg. Read USB drives)
-- Battery percentage (LineageOS recovery has the same issue, so it is universal across all recoveries)
-- fastbootd (please do not try to boot into fastbootd, it may throw your device into a state where it can only boot into Android when "fastboot boot boot.img" is used, and it can only be exited when stock/LineageOS recovery.img is flashed).
-- `/data` partition with FBE (FBE just does not work)
-
-# Untested
-- Flashing ZIPs/adb sideload (will test with LineageOS upgrade from 21 to 22 soon)
-- Factory reset (I do not want to wipe my phone just to test TWRP)
-- Backup/Restore super partition (backup of `/data` is guaranteed not going to work because again, encryption)
-- Anything else that you may use TWRP for normally
-
-# Instructions to Build
-
-Same as all other TWRP (Android 12.1) device trees (when you git clone, the device tree is supposed to be located in device/motorola/rtwo, and no branch is required).
-
-# Credits
-
-- ThEMarD for the LineageOS port (allowed me to find out values from the rtwo device trees, and the command for mkbootimg which can produce working images for rtwo, found from the LineageOS build logs). LineageOS device trees can be found here: https://github.com/moto-sm8550/android_device_motorola_rtwo and here: https://github.com/moto-sm8550/android_device_motorola_sm8550-common
-- The person who created the Samsung Galaxy S23 port for TWRP (used as a base, as both phones have the same SoC/Processor): https://github.com/TeamWin/android_device_samsung_dm1q
+**Copyright (C) 2023 Team Win Recovery Project**<br>
+**Copyright (C) 2025 A-Team Digital Solutions**
