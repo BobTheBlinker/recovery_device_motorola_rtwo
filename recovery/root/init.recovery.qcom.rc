@@ -66,18 +66,25 @@ on fs
     mount ext4 /dev/block/bootdevice/by-name/persist /persist
     mount none /persist /mnt/vendor/persist bind
 
-    # Mount firmware
-    mkdir /vendor/firmware_mnt
-    mount vfat /dev/block/bootdevice/by-name/apnhlos /vendor/firmware_mnt
+    # Mount slot-selected modem firmware for ADSP, PMIC, and USB-C
+    mkdir /vendor/firmware_mnt 0755 root root
+    mount ext4 /dev/block/bootdevice/by-name/modem${ro.boot.slot_suffix} /vendor/firmware_mnt ro
+    write /proc/sys/kernel/firmware_config/force_sysfs_fallback 1
 
     export ANDROID_ROOT /system_root
     # Mount bootdevice
 
+service rtwo-battery-bootstrap /system/bin/rtwo-battery-bootstrap.sh
+    class core
+    user root
+    group root
+    disabled
+    oneshot
+    seclabel u:r:recovery:s0
+
 on boot
     start health-hal-2-1
-
-on property:twrp.user.0.decrypt=0
-    umount /vendor/firmware_mnt
+    start rtwo-battery-bootstrap
 
 on property:ro.boot.usbcontroller=*
     setprop sys.usb.controller ${ro.boot.usbcontroller}
