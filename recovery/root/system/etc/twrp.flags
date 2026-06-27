@@ -16,7 +16,6 @@
 /persist	ext4		/dev/block/bootdevice/by-name/persist		flags=display="Persist"
 /efs		ext4		/dev/block/bootdevice/by-name/efs		flags=backup=1;display="EFS"
 /sec_efs	ext4		/dev/block/bootdevice/by-name/sec_efs		flags=backup=1;display="SEC EFS"
-/firmware	emmc		/dev/block/bootdevice/by-name/apnhlos		flags=backup=1;display="Firmware"
 /modem		emmc		/dev/block/bootdevice/by-name/modem		flags=backup=1;display="Modem"
 /dsp		emmc		/dev/block/bootdevice/by-name/dsp
 /misc		emmc		/dev/block/bootdevice/by-name/misc
@@ -33,4 +32,4 @@
 /preloader	emmc		/dev/block/bootdevice/by-name/bootloader
 
 # Removable storage
-/usb-otg	vfat		/dev/block/sdg1	/dev/block/sdg			flags=display="USB-OTG";storage;wipeingui;removable
+/usb-otg	auto	/dev/block/sdg1	/dev/block/sdg	flags=display="USB-OTG";storage;wipeingui;removable
