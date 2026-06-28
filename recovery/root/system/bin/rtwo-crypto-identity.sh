@@ -1,4 +1,6 @@
 #!/system/bin/sh
+# BOBtheBlinker
+# Copyright (C) 2019-Present A-Team Digital Solutions
 
 resetprop ro.build.version.release 16
 resetprop ro.build.version.sdk 36

@@ -1,5 +1,5 @@
 # Copyright (c) 2017-2018,2020 The Linux Foundation. All rights reserved.
-#
+# Copyright (C) 2019-Present A-Team Digital Solutions
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
 #     * Redistributions of source code must retain the above copyright
@@ -89,3 +89,14 @@ on boot
 on property:ro.boot.usbcontroller=*
     setprop sys.usb.controller ${ro.boot.usbcontroller}
     write /sys/class/udc/${ro.boot.usbcontroller}/device/../mode peripheral
+
+service rtwo-vab-state-sanitize /system/bin/rtwo-vab-state-sanitize.sh
+    class core
+    user root
+    group root
+    disabled
+    oneshot
+    seclabel u:r:recovery:s0
+
+on boot
+    start rtwo-vab-state-sanitize

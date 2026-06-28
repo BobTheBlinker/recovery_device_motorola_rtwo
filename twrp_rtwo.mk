@@ -1,6 +1,6 @@
 #
 # Copyright (C) 2023 The Android Open Source Project
-#
+# Copyright (C) 2019-Present A-Team Digital Solutions
 # SPDX-License-Identifier: Apache-2.0
 #
 
@@ -27,3 +27,6 @@ PRODUCT_NAME := twrp_rtwo
 PRODUCT_BRAND := motorola
 PRODUCT_MODEL := Motorola Edge 40 Pro
 PRODUCT_MANUFACTURER := motorola
+
+# Virtual A/B OTA support
+$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)

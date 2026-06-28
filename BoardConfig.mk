@@ -1,11 +1,12 @@
 #
 # Copyright (C) 2023 The Android Open Source Project
-#
+# Copyright (C) 2019-Present A-Team Digital Solutions
 # SPDX-License-Identifier: Apache-2.0
 #
 
 DEVICE_PATH := device/motorola/rtwo
 
+TW_MAINTAINER := BOBtheBlinker
 OF_MAINTAINER := BOBtheBlinker
 
 # Bootloader
@@ -114,7 +115,22 @@ TARGET_COPY_OUT_VENDOR := vendor
 # Properties
 TARGET_VENDOR_PROP += device/motorola/rtwo/vendor.prop
 
-AB_OTA_UPDATER := false
+AB_OTA_UPDATER := true
+
+AB_OTA_PARTITIONS += \
+    boot \
+    dtbo \
+    init_boot \
+    product \
+    recovery \
+    system \
+    system_dlkm \
+    system_ext \
+    vbmeta \
+    vbmeta_system \
+    vendor \
+    vendor_dlkm \
+    vendor_boot
 
 # Android Verified Boot
 BOARD_AVB_ENABLE := true
