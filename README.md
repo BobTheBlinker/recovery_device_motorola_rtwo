@@ -45,11 +45,17 @@ Current state of features:
 
 # Building
 ```bash
-export ALLOW_MISSING_DEPENDENCIES=true
 source build/envsetup.sh
 lunch twrp_rtwo-eng
-mka recoveryimage -j$(nproc --all)
+m recoveryimage -j$(nproc --all)
 ```
 
 **Copyright (C) 2023 Team Win Recovery Project**<br>
-**Copyright (C) 2025 A-Team Digital Solutions**
+**Copyright (C) 2025 A-Team Digital Solutions**<br><br>
+
+<sub>Special thanks to TheSithLordDarthImperivious for the tree base, and to TRWSTE for inspiring me to take a shot at cracking decryption.</sub><br><br>
+
+<sub>Thanks also to everyone in the Brazilian RTWO DEV's Telegram group for the testing, motivation, and support.</sub><br><br>
+
+<sub>And, as always, thanks to our fearless leader, PizzaG98! For he taught me most of what I know!</sub>
+
