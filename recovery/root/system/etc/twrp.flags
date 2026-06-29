@@ -33,4 +33,4 @@
 /preloader	emmc		/dev/block/bootdevice/by-name/bootloader
 
 # Removable storage
-/usb-otg	auto	/dev/block/sdg1	/dev/block/sdg	flags=display="USB-OTG";storage;wipeingui;removable
+/usb_otg	auto	/dev/block/sdg1	/dev/block/sdg	flags=display="USB-OTG";storage;wipeingui;removable
