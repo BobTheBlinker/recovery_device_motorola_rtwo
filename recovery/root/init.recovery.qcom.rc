@@ -38,15 +38,15 @@ service rtwo-crypto-identity /system/bin/rtwo-crypto-identity.sh
     oneshot
     seclabel u:r:recovery:s0
 
-on early-init
-    exec_start rtwo-crypto-identity
-
 on init
     setprop twrp.defer.decrypt false
     # to cut charging battery path
     write /sys/class/power_supply/battery/siop_level 0
     setprop prepdecrypt.setpatch false
     setprop sys.usb.configfs 1
+
+on early-init
+    start rtwo-crypto-identity
 
 on fs
     wait /dev/block/platform/soc/${ro.boot.bootdevice}

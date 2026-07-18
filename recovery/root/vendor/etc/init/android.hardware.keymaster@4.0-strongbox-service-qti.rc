@@ -1,6 +1,6 @@
 # Copyright (C) 2019-Present A-Team Digital Solutions
 
-on init
+on property:sys.rtwo.crypto_identity.ready=1
     start vendor.keymaster-sb-4-0
 
 service vendor.keymaster-sb-4-0 /system/bin/android.hardware.keymaster@4.0-strongbox-service-qti
