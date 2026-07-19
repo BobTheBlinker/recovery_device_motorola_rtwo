@@ -30,3 +30,6 @@ PRODUCT_MANUFACTURER := motorola
 
 # Virtual A/B OTA support
 $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
+
+# A-Team signing configuration
+$(call inherit-product, vendor/ateam/android.mk)

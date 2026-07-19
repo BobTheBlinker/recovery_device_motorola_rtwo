@@ -198,9 +198,3 @@ TW_CUSTOM_CLOCK_POS := 50
 TW_CUSTOM_BATTERY_POS := 800
 TW_HAS_EDL_MODE := true
 # End*
-
-# A-Team Private Signing - Added by signKEYS
-# We use ?= to bypass readonly restrictions in some trees
-PRODUCT_DEFAULT_DEV_CERTIFICATE ?= vendor/ateam/releasekey
-PRODUCT_OTA_PUBLIC_KEYS ?= vendor/ateam/releasekey.x509.pem
-PRODUCT_EXTRA_RECOVERY_KEYS ?= vendor/ateam/releasekey
