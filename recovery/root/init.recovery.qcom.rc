@@ -100,3 +100,7 @@ service rtwo-vab-state-sanitize /system/bin/rtwo-vab-state-sanitize.sh
 
 on boot
     start rtwo-vab-state-sanitize
+
+# AERA 16: start keymint only after prepdecrypt has set the ROM version/patch
+on property:crypto.ready=1
+    start vendor.keymint-qti
