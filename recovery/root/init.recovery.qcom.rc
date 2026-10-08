@@ -45,7 +45,7 @@ on init
     setprop twrp.defer.decrypt false
     # to cut charging battery path
     write /sys/class/power_supply/battery/siop_level 0
-    setprop prepdecrypt.setpatch false
+    setprop prepdecrypt.setpatch true
     setprop sys.usb.configfs 1
 
 on fs

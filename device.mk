@@ -48,3 +48,7 @@ RECOVERY_LIBRARY_SOURCE_FILES += \
 
 # Enable Fuse Passthrough
 PRODUCT_PROPERTY_OVERRIDES += persist.sys.fuse.passthrough.enable=true
+
+
+# AERA 16: no kernel config check
+PRODUCT_OTA_ENFORCE_VINTF_KERNEL_REQUIREMENTS := false

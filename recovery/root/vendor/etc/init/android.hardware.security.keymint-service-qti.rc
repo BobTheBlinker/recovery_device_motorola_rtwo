@@ -1,4 +1,4 @@
-on init
+on property:crypto.ready=1
     start vendor.keymint-qti
 
 service vendor.keymint-qti /system/bin/android.hardware.security.keymint-service-qti
