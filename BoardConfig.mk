@@ -208,3 +208,6 @@ AERA_UI_ADAPTIVE_RESOLUTION := true
 
 # AERA 16: prebuilt magiskboot is 4K-aligned; skip the 16K ELF check
 BUILD_BROKEN_PREBUILT_ELF_FILES := true
+
+# AERA 16: patch prepdecrypt for super partitions at pack time (see aera_callback.sh)
+AERA_LOCAL_CALLBACK_SCRIPT := $(DEVICE_PATH)/aera_callback.sh

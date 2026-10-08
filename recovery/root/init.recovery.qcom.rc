@@ -104,3 +104,4 @@ on boot
 # AERA 16: start keymint only after prepdecrypt has set the ROM version/patch
 on property:crypto.ready=1
     start vendor.keymint-qti
+
