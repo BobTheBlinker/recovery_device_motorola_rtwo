@@ -211,3 +211,6 @@ BUILD_BROKEN_PREBUILT_ELF_FILES := true
 
 # AERA 16: patch prepdecrypt for super partitions at pack time (see aera_callback.sh)
 AERA_LOCAL_CALLBACK_SCRIPT := $(DEVICE_PATH)/aera_callback.sh
+
+# AERA 16: wifi userspace (wpa_supplicant, wpa_cli, dhcptool, rclone)
+AERA_ENABLE_WLAN := 1
