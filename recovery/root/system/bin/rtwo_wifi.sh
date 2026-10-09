@@ -46,10 +46,6 @@ if [ "$(getprop sys.aera.wlan.up)" = "1" ]; then
     mkdir -p /tmp/recovery/sockets
     chown 1010:1010 /tmp/recovery/sockets; chmod 0770 /tmp/recovery/sockets
     rm -f /tmp/recovery/sockets/wlan0
-    chown 1010:1010 /tmp/recovery/sockets; chmod 0770 /tmp/recovery/sockets
-    rm -f /tmp/recovery/sockets/wlan0
-    chown 1010:1010 /tmp/recovery/sockets; chmod 0770 /tmp/recovery/sockets
-    rm -f /tmp/recovery/sockets/wlan0
     start wpa_supplicant
     setprop sys.aera.wlan.up 0
     echo "rtwo_wifi: wpa_supplicant started"
