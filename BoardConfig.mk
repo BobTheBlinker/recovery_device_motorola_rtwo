@@ -92,18 +92,10 @@ BOARD_SUPER_PARTITION_GROUPS := mot_dp_group
 
 # System as root
 BOARD_ROOT_EXTRA_FOLDERS := \
-	cache \
-	carrier \
 	data_mirror \
-	efs \
 	linkerconfig \
-	odm_dlkm \
-	oem \
-	optics \
 	postinstall \
-	prism \
 	second_stage_resources \
-	spu \
 	system_ext \
 	vendor_dlkm
 BOARD_SUPPRESS_SECURE_ERASE := true
