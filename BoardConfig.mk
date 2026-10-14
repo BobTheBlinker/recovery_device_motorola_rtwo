@@ -79,7 +79,7 @@ BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 TARGET_COPY_OUT_VENDOR := vendor
 
 # Properties
-TARGET_VENDOR_PROP += device/motorola/rtwo/vendor.prop
+TARGET_VENDOR_PROP += $(DEVICE_PATH)/vendor.prop
 
 AB_OTA_UPDATER := true
 
@@ -122,7 +122,7 @@ TW_FRAMERATE := 120
 TW_MAX_BRIGHTNESS := 16380
 TW_DEFAULT_BRIGHTNESS := 7164
 TW_BRIGHTNESS_PATH := "/sys/class/backlight/panel0-backlight/brightness"
-TW_CUSTOM_CPU_TEMP_PATH := /sys/class/thermal/thermal_zone50/temp
+TW_CUSTOM_CPU_TEMP_PATH := /sys/class/thermal/thermal_zone31/temp
 TW_SCREEN_BLANK_ON_BOOT := true
 TW_EXCLUDE_APEX := true
 TW_EXCLUDE_DEFAULT_USB_INIT := true

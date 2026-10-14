@@ -14,8 +14,6 @@
 # limitations under the License.
 #
 
-LOCAL_PATH := device/motorola/rtwo
-
 # Dynamic partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
