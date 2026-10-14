@@ -19,6 +19,9 @@ LOCAL_PATH := device/motorola/rtwo
 # Dynamic partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
+# Recovery-only tree with no kernel: still build the recovery image
+PRODUCT_BUILD_RECOVERY_IMAGE := true
+
 # fastbootd
 PRODUCT_PACKAGES += \
     android.hardware.fastboot@1.0-impl-mock \
