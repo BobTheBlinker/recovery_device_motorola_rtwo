@@ -167,9 +167,6 @@ if [ -z "$OS_RELEASE" ] ||
     exit 1
 fi
 
-[ -n "$FIRST_API" ] || FIRST_API=33
-[ -n "$BOARD_FIRST_API" ] || BOARD_FIRST_API=33
-
 resetprop ro.build.version.release "$OS_RELEASE"
 resetprop ro.build.version.sdk "$OS_SDK"
 resetprop ro.build.version.security_patch "$OS_PATCH"
@@ -186,9 +183,8 @@ if [ -n "$VENDOR_BOOT_PATCH" ]; then
     resetprop ro.vendor.boot_security_patch "$VENDOR_BOOT_PATCH"
 fi
 
-resetprop ro.product.first_api_level "$FIRST_API"
-resetprop ro.board.first_api_level "$BOARD_FIRST_API"
-resetprop ro.crypto.type file
+[ -n "$FIRST_API" ] && resetprop ro.product.first_api_level "$FIRST_API"
+[ -n "$BOARD_FIRST_API" ] && resetprop ro.board.first_api_level "$BOARD_FIRST_API"
 
 log_message \
     "loaded system=${OS_RELEASE}/SDK${OS_SDK}/SPL${OS_PATCH}"
