@@ -48,6 +48,3 @@ RECOVERY_LIBRARY_SOURCE_FILES += \
     $(TARGET_OUT_SHARED_LIBRARIES)/libhidlmemory.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/libion.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/libdmabufheap.so
-
-# Enable Fuse Passthrough
-PRODUCT_PROPERTY_OVERRIDES += persist.sys.fuse.passthrough.enable=true
