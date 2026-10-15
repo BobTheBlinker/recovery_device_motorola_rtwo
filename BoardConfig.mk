@@ -161,3 +161,6 @@ AERA_ENABLE_WLAN := 1
 
 # AERA 16: busybox - AERA_A16.sh reads AERA_USE_BUSYBOX_BINARY from the build shell,
 # so export AERA_USE_BUSYBOX_BINARY=1 before lunch (Jenkins: job environment)
+
+# AERA 16: maintainer shown in Menu > About AERA
+AERA_MAINTAINER := BOBtheBlinker
