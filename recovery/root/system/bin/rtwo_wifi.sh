@@ -13,13 +13,16 @@ if [ ! -e /sys/class/net/wlan0 ]; then
     umount /vendor_dlkm/lib/modules 2>/dev/null
     mountpoint -q /vendor_dlkm || mount -o ro /dev/block/mapper/vendor_dlkm$S /vendor_dlkm || exit 1
     mkdir -p $V; mountpoint -q $V || mount -o ro /dev/block/mapper/vendor$S $V || exit 1
+    # modules.dep lists every module as /vendor/lib/modules/<name>.ko
+    mkdir -p /vendor/lib/modules
+    mountpoint -q /vendor/lib/modules || mount --bind /vendor_dlkm/lib/modules /vendor/lib/modules || exit 1
 
     # driver config, found by the firmware loader under /etc/firmware
     mkdir -p /etc/firmware/wlan/qca_cld/kiwi_v2 /data/vendor/wifi
     cat $V/etc/wifi/kiwi_v2/WCNSS_qcom_cfg.ini > /etc/firmware/wlan/qca_cld/kiwi_v2/WCNSS_qcom_cfg.ini
 
-    # the recovery image's bundled mhi is from another build; swap in the ROM's
-    for m in qrtr_mhi qdss_bridge mhi_dev_satellite mhi_dev_netdev mhi_dev_uci mhi_dev_dtr mhi_dev_drv mhi_dev_net mhi_cntrl_qcom mhi; do
+    # the recovery image's bundled mhi and cfg80211 are from another build; swap in the ROM's
+    for m in qrtr_mhi qdss_bridge mhi_dev_satellite mhi_dev_netdev mhi_dev_uci mhi_dev_dtr mhi_dev_drv mhi_dev_net mhi_cntrl_qcom mhi mac80211 cfg80211; do
         rmmod $m 2>/dev/null
     done
     modprobe -d /vendor_dlkm/lib/modules -a mhi mhi_cntrl_qcom qrtr_mhi cnss2
@@ -27,6 +30,7 @@ if [ ! -e /sys/class/net/wlan0 ]; then
     # cnss-daemon + fs_ready start the chip's calibration, then the wifi driver
     LD_LIBRARY_PATH=$V/lib64:/system/lib64 $V/bin/cnss-daemon -n -l &
     sleep 2
+    for i in 1 2 3 4 5 6 7 8 9 10; do [ -e /sys/kernel/cnss/fs_ready ] && break; sleep 1; done
     echo 1 > /sys/kernel/cnss/fs_ready
     modprobe -d /vendor_dlkm/lib/modules qca_cld3_kiwi_v2
 
