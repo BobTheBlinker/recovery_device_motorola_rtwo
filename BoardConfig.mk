@@ -155,3 +155,6 @@ AERA_UI_ADAPTIVE_RESOLUTION := true
 
 # AERA 16: prebuilt magiskboot is 4K-aligned; skip the 16K ELF check
 BUILD_BROKEN_PREBUILT_ELF_FILES := true
+
+# AERA 16: wifi userspace (wpa_supplicant, wpa_cli, dhcptool, rclone)
+AERA_ENABLE_WLAN := 1

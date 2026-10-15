@@ -100,3 +100,26 @@ service rtwo-vab-state-sanitize /system/bin/rtwo-vab-state-sanitize.sh
 
 on boot
     start rtwo-vab-state-sanitize
+
+# AERA 16: wifi bring-up (see /system/bin/rtwo_wifi.sh). Runs once the
+# identity script has mapped super and loaded the ROM's patch levels.
+service rtwo_wifi /system/bin/sh /system/bin/rtwo_wifi.sh
+    user root
+    group root
+    oneshot
+    disabled
+    seclabel u:r:recovery:s0
+
+on property:sys.rtwo.crypto_identity.ready=1
+    start rtwo_wifi
+
+# AERA 16: AERA sets sys.aera.wlan.up=1 when wifi is switched on
+on property:sys.aera.wlan.up=1
+    start rtwo_wifi
+
+service wpa_supplicant /system/bin/wpa_supplicant -iwlan0 -Dnl80211 -c/vendor/etc/wifi/wpa_supplicant.conf
+    user root
+    group root
+    disabled
+    oneshot
+    seclabel u:r:recovery:s0
