@@ -158,3 +158,6 @@ BUILD_BROKEN_PREBUILT_ELF_FILES := true
 
 # AERA 16: wifi userspace (wpa_supplicant, wpa_cli, dhcptool, rclone)
 AERA_ENABLE_WLAN := 1
+
+# AERA 16: busybox (AERA downloads plugins/catalog with busybox wget)
+AERA_USE_BUSYBOX_BINARY := 1
