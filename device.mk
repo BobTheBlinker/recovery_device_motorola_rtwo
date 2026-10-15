@@ -46,3 +46,6 @@ RECOVERY_LIBRARY_SOURCE_FILES += \
     $(TARGET_OUT_SHARED_LIBRARIES)/libhidlmemory.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/libion.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/libdmabufheap.so
+
+# AERA 16: no kernel config check
+PRODUCT_OTA_ENFORCE_VINTF_KERNEL_REQUIREMENTS := false

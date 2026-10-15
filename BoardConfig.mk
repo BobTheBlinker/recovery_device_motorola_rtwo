@@ -149,3 +149,9 @@ TW_CUSTOM_CLOCK_POS := 50
 TW_CUSTOM_BATTERY_POS := 800
 TW_HAS_EDL_MODE := true
 # End*
+
+# AERA 16: scale the UI to the panel
+AERA_UI_ADAPTIVE_RESOLUTION := true
+
+# AERA 16: prebuilt magiskboot is 4K-aligned; skip the 16K ELF check
+BUILD_BROKEN_PREBUILT_ELF_FILES := true
