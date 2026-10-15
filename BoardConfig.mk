@@ -6,6 +6,8 @@
 
 DEVICE_PATH := device/motorola/rtwo
 
+OF_MAINTAINER := BOBtheBlinker
+
 # Bootloader
 BOARD_VENDOR := motorola
 TARGET_SOC := kalama
